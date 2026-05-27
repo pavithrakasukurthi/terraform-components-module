@@ -9,7 +9,7 @@ locals {
     health_check_path = "${var.component}" == "frontend" ? "/" : "/health"
     frontend_alb_listener_arn = data.aws_ssm_parameter.frontend_alb_listener_arn.value
     backend_alb_listener_arn = data.aws_ssm_parameter.backend_alb_listener_arn.value
-    listener_arn = "${var.component}" == "frontend" ? frontend_alb_listener_arn : backend_alb_listener_arn
+    listener_arn = "${var.component}" == "frontend" ? local.frontend_alb_listener_arn : local.backend_alb_listener_arn
     context_path = "${component}" == "frontend" ? "${var.project}-${var.environment}.${var.domain_name}" : "${var.component}.backend-alb-${var.environment}.${var.domain_name}"
     common_tags = {
         Project = var.project
