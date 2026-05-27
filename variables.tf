@@ -21,3 +21,7 @@ variable "env" {
 variable "domain_name" {
     type = string
 }
+
+variable "rule_priority" {
+
+}
